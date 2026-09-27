@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Timetable - Exercise 5</title>
+  <link rel="stylesheet" href="timetable.css">
+</head>
+<body>
+
+  <!--Header-->
+  <header>
+    <h1>Michael&rsquo;s Weekly Timetable</h1>
+    <p>Georgia State University &middot; Fall 2026</p>
+  </header>
+
+  <!--Navigation-->
+  <nav aria-label="Timetable sections">
+    <ul>
+      <li><a href="#legend">Legend</a></li>
+      <li><a href="#week">Weekly schedule</a></li>
+      <li><a href="tewabe_michael_cw03.html#exercise5">Back to CW03</a></li>
+    </ul>
+  </nav>
+
+  <!--Main content-->
+  <main>
+
+    <!--Legend section-->
+    <section id="legend">
+      <h2>Legend</h2>
+      <p>Every activity type has its own color, symbol, left-border style, and text label, so it still reads in grayscale.</p>
+      <ul class="legend">
+        <li class="lecture"><span class="cue" aria-hidden="true">&#9632;</span> Lecture</li>
+        <li class="lab"><span class="cue" aria-hidden="true">&#9670;</span> Lab</li>
+        <li class="study"><span class="cue" aria-hidden="true">&#9679;</span> Study</li>
+        <li class="break"><span class="cue" aria-hidden="true">&#9675;</span> Break</li>
+        <li class="club"><span class="cue" aria-hidden="true">&#9733;</span> Club</li>
+      </ul>
+    </section>
+
+    <!--Timetable section-->
+    <section id="week">
+      <h2>Weekly schedule</h2>
+      <div class="table-wrap">
+        <table>
+          <caption>Class, lab, study, break, and club times, Monday to Friday</caption>
+          <thead>
+            <tr>
+              <th scope="col">Time</th>
+              <th scope="col">Monday</th>
+              <th scope="col">Tuesday</th>
+              <th scope="col">Wednesday</th>
+              <th scope="col">Thursday</th>
+              <th scope="col">Friday</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">9:00 &ndash; 10:15</th>
+            <td class="lecture"><span class="cue" aria-hidden="true">&#9632;</span> CSC 4370 Web Programming<span class="tag">Lecture</span></td>
+            <td class="study"><span class="cue" aria-hidden="true">&#9679;</span> Library study block<span class="tag">Study</span></td>
+            <td class="lecture"><span class="cue" aria-hidden="true">&#9632;</span> CSC 4370 Web Programming<span class="tag">Lecture</span></td>
+            <td class="study"><span class="cue" aria-hidden="true">&#9679;</span> Library study block<span class="tag">Study</span></td>
+            <td class="lecture"><span class="cue" aria-hidden="true">&#9632;</span> CSC 4520 Algorithms<span class="tag">Lecture</span></td>
+          </tr>
+          <tr>
+            <th scope="row">10:30 &ndash; 11:45</th>
+            <td class="lecture"><span class="cue" aria-hidden="true">&#9632;</span> CSC 4520 Algorithms<span class="tag">Lecture</span></td>
+            <td class="lab"><span class="cue" aria-hidden="true">&#9670;</span> Web Programming lab<span class="tag">Lab</span></td>
+            <td class="lecture"><span class="cue" aria-hidden="true">&#9632;</span> CSC 4520 Algorithms<span class="tag">Lecture</span></td>
+            <td class="lab"><span class="cue" aria-hidden="true">&#9670;</span> HCI research lab<span class="tag">Lab</span></td>
+            <td class="study"><span class="cue" aria-hidden="true">&#9679;</span> Project One work<span class="tag">Study</span></td>
+          </tr>
+          <tr>
+            <th scope="row">12:00 &ndash; 1:00</th>
+            <td class="break"><span class="cue" aria-hidden="true">&#9675;</span> Lunch<span class="tag">Break</span></td>
+            <td class="break"><span class="cue" aria-hidden="true">&#9675;</span> Lunch<span class="tag">Break</span></td>
+            <td class="break"><span class="cue" aria-hidden="true">&#9675;</span> Lunch<span class="tag">Break</span></td>
+            <td class="break"><span class="cue" aria-hidden="true">&#9675;</span> Lunch<span class="tag">Break</span></td>
+            <td class="break"><span class="cue" aria-hidden="true">&#9675;</span> Lunch<span class="tag">Break</span></td>
+          </tr>
+          <tr>
+            <th scope="row">1:15 &ndash; 2:30</th>
+            <td class="lab"><span class="cue" aria-hidden="true">&#9670;</span> HCI research lab<span class="tag">Lab</span></td>
+            <td class="lecture"><span class="cue" aria-hidden="true">&#9632;</span> CSC 4350 Software Engineering<span class="tag">Lecture</span></td>
+            <td class="study"><span class="cue" aria-hidden="true">&#9679;</span> Algorithms problem set<span class="tag">Study</span></td>
+            <td class="lecture"><span class="cue" aria-hidden="true">&#9632;</span> CSC 4350 Software Engineering<span class="tag">Lecture</span></td>
+            <td class="lab"><span class="cue" aria-hidden="true">&#9670;</span> Web Programming lab<span class="tag">Lab</span></td>
+          </tr>
+          <tr>
+            <th scope="row">5:00 &ndash; 6:30</th>
+            <td class="club"><span class="cue" aria-hidden="true">&#9733;</span> Google Developer Group meeting<span class="tag">Club</span></td>
+            <td class="study"><span class="cue" aria-hidden="true">&#9679;</span> Homework review<span class="tag">Study</span></td>
+            <td class="club"><span class="cue" aria-hidden="true">&#9733;</span> UX club critique<span class="tag">Club</span></td>
+            <td class="study"><span class="cue" aria-hidden="true">&#9679;</span> Homework review<span class="tag">Study</span></td>
+            <td class="club"><span class="cue" aria-hidden="true">&#9733;</span> ProgGSU design session<span class="tag">Club</span></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>CSC 4370 &middot; CW03 Exercise 5</p>
+  </footer>
+
+</body>
+</html>

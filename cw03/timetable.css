@@ -1,0 +1,202 @@
+/*Exercise 5: School timetable stylesheet*/
+
+/*Color scheme as CSS variables*/
+:root {
+    --navy: #1f2a44;
+    --page: #f7f7fb;
+    --ink: #1f2937;
+    --line: #d1d5db;
+
+    /*Revised state colors: dark text on light fills (all 8:1 or higher)*/
+    --lecture-bg: #dbeafe;
+    --lecture-fg: #1e3a8a;
+    --lab-bg: #dcfce7;
+    --lab-fg: #14532d;
+    --study-bg: #fef3c7;
+    --study-fg: #78350f;
+    --break-bg: #f3f4f6;
+    --break-fg: #374151;
+    --club-bg: #fce7f3;
+    --club-fg: #831843;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--page);
+    color: var(--ink);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+}
+
+/*Header and navigation*/
+header {
+    background-color: var(--navy);
+    color: #ffffff;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0 0 4px;
+    font-size: 1.6rem;
+}
+
+header p {
+    margin: 0;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 12px 20px;
+    list-style: none;
+    background-color: #e5e7eb;
+}
+
+nav a {
+    color: var(--navy);
+    font-weight: bold;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 24px;
+}
+
+/*Legend*/
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/*Table*/
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+    background-color: #ffffff;
+}
+
+caption {
+    text-align: left;
+    font-weight: bold;
+    padding-bottom: 8px;
+}
+
+th,
+td {
+    border: 1px solid var(--line);
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+}
+
+thead th {
+    background-color: var(--navy);
+    color: #ffffff;
+}
+
+tbody th {
+    background-color: #eef0f5;
+    white-space: nowrap;
+}
+
+/*Activity states: color plus a non-color cue on every type*/
+.activity {
+    color: var(--ink);
+    font-weight: bold;
+}
+
+.cue {
+    display: inline-block;
+    min-width: 1.2em;
+    font-weight: bold;
+}
+
+.tag {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.lecture {
+    background-color: var(--lecture-bg);
+    color: var(--lecture-fg);
+    border-left: 6px solid var(--lecture-fg);
+}
+
+.lab {
+    background-color: var(--lab-bg);
+    color: var(--lab-fg);
+    border-left: 6px dashed var(--lab-fg);
+}
+
+.study {
+    background-color: var(--study-bg);
+    color: var(--study-fg);
+    border-left: 6px dotted var(--study-fg);
+}
+
+.break {
+    background-color: var(--break-bg);
+    background-image: repeating-linear-gradient(45deg, transparent 0 8px, rgba(55, 65, 81, 0.12) 8px 10px);
+    color: var(--break-fg);
+    border-left: 6px double var(--break-fg);
+}
+
+.club {
+    background-color: var(--club-bg);
+    color: var(--club-fg);
+    border-left: 6px ridge var(--club-fg);
+}
+
+.legend li {
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+/*UG 04 "before" state: add class="cues-off" to <body> in DevTools
+  to see the original color-only design (white text on saturated fills)*/
+.cues-off .cue,
+.cues-off .tag {
+    display: none;
+}
+
+.cues-off .lecture,
+.cues-off .lab,
+.cues-off .study,
+.cues-off .break,
+.cues-off .club {
+    color: #ffffff;
+    border-left: 0;
+    background-image: none;
+}
+
+.cues-off .lecture { background-color: #3b82f6; }
+.cues-off .lab { background-color: #22c55e; }
+.cues-off .study { background-color: #f59e0b; }
+.cues-off .break { background-color: #9ca3af; }
+.cues-off .club { background-color: #ec4899; }
+
+footer {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    color: #4b5563;
+}
