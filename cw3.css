@@ -1,0 +1,65 @@
+/*Center the shirt on the page*/
+body {
+    margin: 0;
+    padding: 40px 16px;
+    text-align: center;
+    background-color: #f2f2f2;
+}
+
+/*Container: the positioning reference for the text*/
+div {
+    position: relative;
+    display: inline-block;
+    background-color: lightsteelblue;
+    border-radius: 12px;
+}
+
+img {
+    display: block;
+    width: 400px;
+    height: auto;
+
+    /*Keep the shirt on the bottom layer*/
+    position: relative;
+    z-index: 1;
+
+    /*Black border*/
+    border: 4px solid black;
+
+    /*Space between the border and the image*/
+    padding: 20px;
+
+    /*Space around the image*/
+    margin: 20px;
+
+    /*Shadow so the framed shirt stands out*/
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.35);
+}
+
+.words {
+    font-family: impact, "Arial Black", sans-serif;
+    font-size: 60px;
+}
+
+.first {
+    position: absolute;
+    top: 165px;
+    left: 166px;
+    z-index: 2;
+}
+
+.heart {
+    color: red;
+    font-size: 80px;
+    position: absolute;
+    top: 146px;
+    left: 188px;
+    z-index: 2;
+}
+
+.last {
+    position: absolute;
+    top: 165px;
+    left: 250px;
+    z-index: 2;
+}
