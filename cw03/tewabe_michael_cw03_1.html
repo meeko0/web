@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CW03 CSS Foundations Lab - Michael</title>
+  <!--Exercise 1: external stylesheet link-->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!--Page header-->
+  <header class="page-header">
+    <div class="inner">
+      <h1>CW03: CSS Foundations Lab</h1>
+      <p>Build, inspect, explain, and defend the CSS decisions behind a responsive page.</p>
+    </div>
+  </header>
+
+  <!--Quick links (also the UG 03 breakpoint test target)-->
+  <nav class="quick-links" aria-label="Jump to section">
+    <ul>
+      <li><a href="#info">Info</a></li>
+      <li><a href="#exercise1">Ex 1</a></li>
+      <li><a href="#exercise2">Ex 2</a></li>
+      <li><a href="#exercise3">Ex 3</a></li>
+      <li><a href="#exercise4">Ex 4</a></li>
+      <li><a href="#exercise5">Ex 5</a></li>
+      <li><a href="#ug01">UG 01</a></li>
+      <li><a href="#ug02">UG 02</a></li>
+      <li><a href="#ug03">UG 03</a></li>
+      <li><a href="#ug04">UG 04</a></li>
+      <li><a href="#evidence">Evidence</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!--Assignment information-->
+    <section id="info">
+      <h2>Assignment Information</h2>
+      <dl class="info-list">
+        <dt>Name</dt>
+        <dd>Michael Tewabe</dd>
+        <dt>Course</dt>
+        <dd>CSC 4370 Web Programming</dd>
+        <dt>Section</dt>
+        <dd><span class="todo">SECTION #</span></dd>
+        <dt>Date</dt>
+        <dd>September 27, 2026</dd>
+        <dt>Assignment</dt>
+        <dd>CW03: CSS Foundations Lab (Undergraduate)</dd>
+      </dl>
+    </section>
+
+    <!--Exercise 1-->
+    <section id="exercise1">
+      <h2>Exercise 1: External Style Sheet</h2>
+      <p>This page links one external stylesheet, <code>styles.css</code>, from the <code>&lt;head&gt;</code>:</p>
+      <pre><code>&lt;link rel="stylesheet" href="styles.css"&gt;</code></pre>
+      <p>The rule below lives in <code>styles.css</code> and turns the demo paragraph dark red:</p>
+      <pre><code>.ex1-demo {
+    color: darkred;
+    font-weight: 600;
+}</code></pre>
+      <p class="ex1-demo">This paragraph is dark red because of the external stylesheet, not an inline style.</p>
+      <p>I scoped the color to a class instead of <code>body</code> so the rest of this report keeps a readable neutral text color.</p>
+    </section>
+
+    <!--Exercise 2-->
+    <section id="exercise2">
+      <h2>Exercise 2: Debugging CSS</h2>
+      <div class="debug-card">
+        <h3>My Debugging Analysis</h3>
+
+        <div class="finding">
+          <h4>Finding 1: Font stack with no generic fallback</h4>
+          <p><strong>Original:</strong> <code>font-family: "Times New Roman";</code></p>
+          <p><strong>Fix:</strong> <code>font-family: "Times New Roman", Times, serif;</code></p>
+          <p><strong>Why:</strong> If Times New Roman is not installed (common on Linux and some phones), the browser falls back to its own default font, which may not even be a serif. A generic family at the end of the stack guarantees the intended style of font.</p>
+        </div>
+
+        <div class="finding">
+          <h4>Finding 2: Headings h1, h2, and h3 share one size</h4>
+          <p><strong>Original:</strong> <code>h1, h2, h3 { font-size: 2.5em; }</code></p>
+          <p><strong>Fix:</strong> <code>h1 { font-size: 2.5em; } h2 { font-size: 2em; } h3 { font-size: 1.5em; }</code></p>
+          <p><strong>Why:</strong> With one shared size, every heading level looks identical, so readers lose the visual hierarchy the HTML structure describes. Also, <code>em</code> is relative to the parent, so a heading inside a larger parent grows further. Giving each level its own size restores the outline.</p>
+        </div>
+
+        <div class="finding">
+          <h4>Finding 3: Missing semicolons on the last declarations</h4>
+          <p><strong>Original:</strong> <code>box-sizing: border-box</code> and <code>color: red</code> with no semicolon</p>
+          <p><strong>Fix:</strong> <code>box-sizing: border-box;</code> and <code>color: red;</code></p>
+          <p><strong>Why:</strong> The last semicolon in a rule is technically optional, so the page renders as-is. But when I added another declaration after <code>box-sizing: border-box</code>, the browser read both lines as one invalid value and dropped them, which DevTools showed as struck-through. Always ending declarations with a semicolon prevents that silent failure.</p>
+        </div>
+      </div>
+
+      <pre><code>/*Corrected CSS*/
+body {
+    font-family: "Times New Roman", Times, serif;
+    margin-left: 20%;
+    margin-right: 20%;
+    text-align: justify;
+    background: ivory;
+    color: red;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
+h1, h2, h3 {
+    color: #ff0000;
+    margin: 20px 0;
+}
+
+.container {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+a {
+    color: #0000ff;
+    text-decoration: underline;
+}</code></pre>
+    </section>
+
+    <!--Exercise 3-->
+    <section id="exercise3">
+      <h2>Exercise 3: Song Lyrics Styling</h2>
+      <p>The lyrics page lives in its own file, <a href="lyrics.html">lyrics.html</a>, so its chocolate background does not take over this report. It is shown below in a frame.</p>
+      <iframe class="embed embed-lyrics" src="lyrics.html" title="Blinding Lights lyrics styled with lyrics.css"></iframe>
+      <div class="table-wrap">
+        <table>
+          <caption>The six classes used on the lyrics page</caption>
+          <thead>
+            <tr>
+              <th scope="col">Class</th>
+              <th scope="col">Size</th>
+              <th scope="col">Font</th>
+              <th scope="col">Weight / style</th>
+              <th scope="col">Color</th>
+              <th scope="col">Margins</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>.artist</code></td><td>14pt</td><td>Arial</td><td>Bold</td><td>Moccasin</td><td>Default</td></tr>
+            <tr><td><code>.song-title</code></td><td>14pt</td><td>Arial</td><td>Normal</td><td>Khaki</td><td>Default</td></tr>
+            <tr><td><code>.album</code></td><td>12pt</td><td>Arial</td><td>Normal</td><td>Khaki</td><td>Default</td></tr>
+            <tr><td><code>.year</code></td><td>12pt</td><td>Arial</td><td>Bold</td><td>Ivory</td><td>Default</td></tr>
+            <tr><td><code>.verse</code></td><td>14pt</td><td>Trebuchet MS</td><td>Bold</td><td>Gold</td><td>2cm left and right</td></tr>
+            <tr><td><code>.chorus</code></td><td>14pt</td><td>Trebuchet MS</td><td>Bold italic</td><td>Gold</td><td>4cm left and right</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!--Exercise 4-->
+    <section id="exercise4">
+      <h2>Exercise 4: External Stylesheet</h2>
+      <p>All lyrics styling sits in <code>lyrics.css</code>, linked from the lyrics page:</p>
+      <pre><code>&lt;link rel="stylesheet" href="lyrics.css"&gt;</code></pre>
+      <pre><code>/*lyrics.css*/
+body {
+    background-color: chocolate;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.artist { font-size: 14pt; font-family: Arial, sans-serif; font-weight: bold; color: moccasin; }
+.song-title { font-size: 14pt; font-family: Arial, sans-serif; font-weight: normal; color: khaki; }
+.album { font-size: 12pt; font-family: Arial, sans-serif; font-weight: normal; color: khaki; }
+.year { font-size: 12pt; font-family: Arial, sans-serif; font-weight: bold; color: ivory; }
+
+.verse {
+    font-size: 14pt;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    color: gold;
+    margin-left: 2cm;
+    margin-right: 2cm;
+}
+
+.chorus {
+    font-size: 14pt;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    color: gold;
+    margin-left: 4cm;
+    margin-right: 4cm;
+}</code></pre>
+      <p>Keeping presentation in an external file separates content from design: the HTML only says <em>what</em> each line is (verse, chorus, artist), and one stylesheet decides how it looks. Any other page that links <code>lyrics.css</code> gets the same styling, and a design change happens in one place instead of on every page.</p>
+    </section>
+
+    <!--Exercise 5-->
+    <section id="exercise5">
+      <h2>Exercise 5: School Website Design</h2>
+      <p>The timetable is its own page, <a href="timetable.html">timetable.html</a>, built with <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, and <code>&lt;table&gt;</code>, and styled by <code>timetable.css</code>.</p>
+      <iframe class="embed embed-timetable" src="timetable.html" title="Weekly school timetable with color-coded activities"></iframe>
+      <p>The color scheme is defined once as CSS variables and reused by each activity class:</p>
+      <pre><code>:root {
+    --navy: #1f2a44;
+    --lecture-bg: #dbeafe;  --lecture-fg: #1e3a8a;
+    --lab-bg: #dcfce7;      --lab-fg: #14532d;
+    --study-bg: #fef3c7;    --study-fg: #78350f;
+    --break-bg: #f3f4f6;    --break-fg: #374151;
+    --club-bg: #fce7f3;     --club-fg: #831843;
+}
+
+.lecture {
+    background-color: var(--lecture-bg);
+    color: var(--lecture-fg);
+    border-left: 6px solid var(--lecture-fg);
+}</code></pre>
+    </section>
+
+    <!--Critical thinking lab-->
+    <section id="critical-thinking">
+      <h2>Critical Thinking</h2>
+      <p>Each investigation lists the exact code tested, one measured value, and a reflection. Screenshots are in the <a href="#evidence">Evidence</a> section.</p>
+
+      <!--UG 01-->
+      <article id="ug01">
+        <h3>UG 01: Forensic Cascade Reconstruction</h3>
+        <p>Test element: <mark class="cascade-target">Which color wins?</mark></p>
+        <pre><code>&lt;section id="ug01"&gt; ... &lt;mark class="cascade-target"&gt;Which color wins?&lt;/mark&gt;
+
+#ug01 mark { color: #7c2d12; }      /*written first*/
+.cascade-target { color: #1d4ed8; } /*written second*/
+mark { color: #047857; }            /*written last*/</code></pre>
+        <p><strong>My prediction before loading:</strong> <span class="todo">Write your ranking of all three rules and your predicted winner here, before you open the page.</span></p>
+        <div class="table-wrap">
+          <table>
+            <caption>Specificity calculation (IDs, classes, elements)</caption>
+            <thead>
+              <tr><th scope="col">Selector</th><th scope="col">Specificity</th><th scope="col">Result</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>#ug01 mark</code></td><td>(1, 0, 1)</td><td>Winner</td></tr>
+              <tr><td><code>.cascade-target</code></td><td>(0, 1, 0)</td><td>Overridden</td></tr>
+              <tr><td><code>mark</code></td><td>(0, 0, 1)</td><td>Overridden</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Measured value:</strong> Computed <code>color</code> = <span class="todo">rgb(124, 45, 18)? confirm in the Computed panel</span></p>
+        <p><strong>Reflection:</strong> <span class="todo">2&ndash;3 sentences: did your prediction match? Why does the ID rule win even though the element rule is written last?</span></p>
+      </article>
+
+      <!--UG 02-->
+      <article id="ug02">
+        <h3>UG 02: Pixel Budget Under Constraint</h3>
+        <p>Target: a rendered outer width of exactly 420px at a 900px viewport, without writing <code>width: 420px</code>.</p>
+
+        <div id="ug02-before" class="budget">Before: content-box panel</div>
+        <pre><code>.budget {
+    box-sizing: content-box;
+    width: 380px;
+    padding: 18px;
+    border: 2px solid;
+}
+/*outer width = 380 + 18 + 18 + 2 + 2 = 420px*/</code></pre>
+
+        <div id="ug02-after" class="budget budget-bb">After: border-box panel</div>
+        <pre><code>.budget-bb {
+    box-sizing: border-box;
+    width: calc(380px + 2 * 18px + 2 * 2px);
+}
+/*switching to border-box alone shrinks the panel to 380px,
+   because padding and border now fit inside the width.
+   calc() adds them back: 380 + 36 + 4 = 420px */</code></pre>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Measured widths at a 900px viewport</caption>
+            <thead>
+              <tr><th scope="col">State</th><th scope="col">Expected</th><th scope="col">Measured in DevTools</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>content-box, width 380px</td><td>420px</td><td><span class="todo">___ px</span></td></tr>
+              <tr><td>border-box, width 380px (the switch)</td><td>380px</td><td><span class="todo">___ px</span></td></tr>
+              <tr><td>border-box, width calc(&hellip;)</td><td>420px</td><td><span class="todo">___ px</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Reflection:</strong> <span class="todo">2&ndash;3 sentences on why the same width value gave two different outer widths.</span></p>
+      </article>
+
+      <!--UG 03-->
+      <article id="ug03">
+        <h3>UG 03: Breakpoint Failure Study</h3>
+        <p><strong>My test:</strong> every quick link at the top of this page must be visible without horizontal scrolling.</p>
+        <p><strong>Failure:</strong> the quick links sit in a flex row with <code>flex-wrap: nowrap</code> and <code>white-space: nowrap</code>, so the row cannot shrink below its content width. First failing width: <span class="todo">___ px (drag the DevTools device toolbar down until a horizontal scrollbar appears)</span>.</p>
+        <p><strong>Measured value:</strong> computed width of <code>.quick-links ul</code> at the failing width = <span class="todo">___ px</span>, which is wider than the viewport.</p>
+        <p><strong>Repair (one media query):</strong></p>
+        <pre><code>@media (max-width: 999px) {
+    .quick-links ul {
+        flex-wrap: wrap;
+    }
+}</code></pre>
+        <p>The query only applies at 999px and below, so the desktop layout above 1000px is unchanged.</p>
+        <p><strong>Reflection:</strong> <span class="todo">2&ndash;3 sentences tying the overflow to the computed width, and why wrapping fixes it.</span></p>
+      </article>
+
+      <!--UG 04-->
+      <article id="ug04">
+        <h3>UG 04: Color Is Not the Message</h3>
+        <p>Audit target: the activity states in the Exercise 5 timetable. The original design used white text on saturated fills and relied on color alone.</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Contrast ratios (WCAG AA needs 4.5:1 for normal text)</caption>
+            <thead>
+              <tr><th scope="col">State</th><th scope="col">Original pair</th><th scope="col">Ratio</th><th scope="col">Revised pair</th><th scope="col">Ratio</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Lab</td><td><code>#ffffff</code> on <code>#22c55e</code></td><td>2.28:1 (fails)</td><td><code>#14532d</code> on <code>#dcfce7</code></td><td>8.30:1 (passes)</td></tr>
+              <tr><td>Study</td><td><code>#ffffff</code> on <code>#f59e0b</code></td><td>2.15:1 (fails)</td><td><code>#78350f</code> on <code>#fef3c7</code></td><td>8.15:1 (passes)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Revised state system:</strong> every activity now has four cues: a fill color, a symbol (&#9632; lecture, &#9670; lab, &#9679; study, &#9675; break, &#9733; club), a distinct left-border style (solid, dashed, dotted, double, ridge), and a written label.</p>
+        <p><strong>The cue that carries meaning:</strong> the written label. Symbols and border styles help scanning, but a word like &ldquo;Lab&rdquo; is unambiguous in grayscale, to screen readers, and to someone who has never seen the legend.</p>
+        <p><strong>Peer check:</strong> <span class="todo">Classmate initials: ___ . Their interpretation of the grayscale timetable: ___</span></p>
+        <p><strong>Reflection:</strong> <span class="todo">2&ndash;3 sentences on what the grayscale capture and your peer showed.</span></p>
+      </article>
+    </section>
+
+    <!--Evidence-->
+    <section id="evidence">
+      <h2>Evidence</h2>
+      <p>All screenshots are of this page with DevTools open.</p>
+      <div class="evidence-grid">
+        <figure>
+          <img src="images/ug01-devtools.png" alt="DevTools Computed panel for the mark element showing the ID rule winning and the class and element rules struck through" width="1280" height="800">
+          <figcaption>Figure 1 (UG 01): Computed panel with the winning ID rule and overridden rules, with my desktop timestamp.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/ug01-specificity.png" alt="Hand-written specificity calculation for the three conflicting selectors" width="1280" height="800">
+          <figcaption>Figure 2 (UG 01): My hand-written specificity calculation.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/ug02-content-box.png" alt="DevTools box model at a 900 pixel viewport showing the content-box panel at 420 pixels wide" width="1280" height="800">
+          <figcaption>Figure 3 (UG 02): Content-box panel measured at 420px.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/ug02-border-box.png" alt="DevTools box model at a 900 pixel viewport showing the border-box panel recovered to 420 pixels wide" width="1280" height="800">
+          <figcaption>Figure 4 (UG 02): Border-box panel recovered to 420px with calc().</figcaption>
+        </figure>
+        <figure>
+          <img src="images/ug03-before.png" alt="Page at the failing viewport width with the quick links row overflowing and a horizontal scrollbar" width="1280" height="800">
+          <figcaption>Figure 5 (UG 03): Failure before the media query.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/ug03-after.png" alt="Page at the same viewport width with the quick links wrapped onto two rows and no horizontal scrollbar" width="1280" height="800">
+          <figcaption>Figure 6 (UG 03): Same width after the media query.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/ug03-desktop.png" alt="Desktop view wider than 1000 pixels with the quick links on one row, unchanged by the repair" width="1280" height="800">
+          <figcaption>Figure 7 (UG 03): Desktop regression check above 1000px.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/ug04-contrast.png" alt="Contrast checker results for the original and revised lab and study color pairs" width="1280" height="800">
+          <figcaption>Figure 8 (UG 04): Contrast tool results.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/ug04-grayscale.png" alt="The revised timetable in grayscale, with activity types still identifiable by symbols, border styles, and labels" width="1280" height="800">
+          <figcaption>Figure 9 (UG 04): Grayscale capture of the revised timetable.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!--Sources and assistance-->
+    <section id="sources">
+      <h2>Sources</h2>
+      <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity" target="_blank" rel="noopener noreferrer">MDN: Specificity</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing" target="_blank" rel="noopener noreferrer">MDN: box-sizing</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_media_queries" target="_blank" rel="noopener noreferrer">MDN: Using media queries</a></li>
+        <li><a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener noreferrer">WebAIM Contrast Checker</a></li>
+        <li>Song lyrics and class specifications for Exercises 3 and 4 were provided in the CW03 assignment.</li>
+      </ul>
+      <h3>Assistance statement</h3>
+      <p>I used Claude (an AI assistant) to help draft the page structure, the stylesheets, and the Exercise 2 write-up, and to calculate the contrast ratios. I ran every test myself in Chrome DevTools, and all screenshots, predictions, measurements, and the peer check are my own.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Michael Tewabe &middot; CSC 4370 &middot; CW03</p>
+  </footer>
+
+</body>
+</html>
