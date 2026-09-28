@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <title>Question and Answer</title>
+      <style>
+
+         body {
+            font-family: Calibri, sans-serif;
+            font-size: 3em;
+         }
+
+         #answer {
+            color: black;
+            width: 100px;
+
+            animation: moveFraction 3s ease-in-out 1s;
+         }
+
+         @keyframes moveFraction {
+            0% {
+               color: yellow;
+               transform: translate(-200px, 0px);
+            }
+
+            50% {
+               color: yellow;
+               transform: translate(0px, 60px);
+            }
+
+            100% {
+               color: red;
+               transform: translate(150px, 0px);
+            }
+         }
+
+
+         #question {
+            transition: transform 0.3s ease;
+         }
+
+         #question:hover {
+            transform: scale(1.1);
+         }
+
+         span {
+            display: inline-block;
+         }
+
+      </style>
+   </head>
+   <body>
+      <span id="question">Question: &frac14; + &frac12; =</span>
+      <span id="answer">&frac34;</span>
+   </body>
+</html>
